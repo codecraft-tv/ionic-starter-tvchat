@@ -48,6 +48,18 @@ mod.service('ShowsService', function () {
 				"network": "NBC"
 			},
 			{
+				"showid": 40136,
+				"link": "http://tvrage.com/another-period",
+				"name": "Another Period",
+				"classification": "Scripted",
+				"country": "US",
+				"image": "http://images.tvrage.com/shows/41/40136.jpg",
+				"genres": [
+					"Comedy"
+				],
+				"network": "Comedy Central"
+			},
+			{
 				"showid": 41728,
 				"link": "http://tvrage.com/aquarius",
 				"name": "Aquarius",
@@ -57,7 +69,7 @@ mod.service('ShowsService', function () {
 				"genres": [
 					"Crime"
 				],
-				"network": "NBC"
+				"network": "NBC.com"
 			},
 			{
 				"showid": 30715,
@@ -98,6 +110,20 @@ mod.service('ShowsService', function () {
 					"Family"
 				],
 				"network": "ABC Family"
+			},
+			{
+				"showid": 38517,
+				"link": "http://tvrage.com/Ballers_2015",
+				"name": "Ballers (2015)",
+				"classification": "Scripted",
+				"country": "US",
+				"image": "http://images.tvrage.com/shows/39/38517.jpg",
+				"genres": [
+					"Comedy",
+					"Drama",
+					"Sports"
+				],
+				"network": "HBO"
 			},
 			{
 				"showid": 32210,
@@ -157,17 +183,17 @@ mod.service('ShowsService', function () {
 			},
 			{
 				"showid": 47159,
-				"link": "http://tvrage.com/shows/id-47159",
+				"link": "http://tvrage.com/Between",
 				"name": "Between",
 				"classification": "Scripted",
-				"country": "US",
+				"country": "CA",
 				"image": "http://images.tvrage.com/shows/48/47159.jpg",
 				"genres": [
 					"Drama",
 					"Sci-Fi",
 					"Thriller"
 				],
-				"network": "Netflix"
+				"network": "CityTV"
 			},
 			{
 				"showid": 37364,
@@ -213,7 +239,7 @@ mod.service('ShowsService', function () {
 				"name": "Brooklyn Nine-Nine",
 				"classification": "Scripted",
 				"country": "US",
-				"image": "http://images.tvrage.com/shows/36/35774.png",
+				"image": "http://images.tvrage.com/shows/36/35774.jpg",
 				"genres": [
 					"Comedy"
 				],
@@ -260,6 +286,20 @@ mod.service('ShowsService', function () {
 					"Drama"
 				],
 				"network": "NBC"
+			},
+			{
+				"showid": 37494,
+				"link": "http://tvrage.com/complications",
+				"name": "Complications",
+				"classification": "Scripted",
+				"country": "US",
+				"image": "http://images.tvrage.com/shows/38/37494.jpg",
+				"genres": [
+					"Drama",
+					"Medical",
+					"Thriller"
+				],
+				"network": "USA Network"
 			},
 			{
 				"showid": 41239,
@@ -326,6 +366,7 @@ mod.service('ShowsService', function () {
 				"image": "http://images.tvrage.com/shows/31/30724.jpg",
 				"genres": [
 					"Action",
+					"Drama",
 					"Sci-Fi"
 				],
 				"network": "Syfy"
@@ -336,7 +377,7 @@ mod.service('ShowsService', function () {
 				"name": "Devious Maids",
 				"classification": "Scripted",
 				"country": "US",
-				"image": "http://images.tvrage.com/shows/31/30826.jpg",
+				"image": "http://images.tvrage.com/shows/31/30826.png",
 				"genres": [
 					"Drama"
 				],
@@ -366,7 +407,7 @@ mod.service('ShowsService', function () {
 				"genres": [
 					"Action",
 					"Drama",
-					"Fantasy"
+					"Horror/Supernatural"
 				],
 				"network": "Syfy"
 			},
@@ -431,7 +472,7 @@ mod.service('ShowsService', function () {
 				"showid": 48384,
 				"link": "http://tvrage.com/shows/id-48384",
 				"name": "Fear The Walking Dead",
-				"classification": "Scripted",
+				"classification": "Mini-Series",
 				"country": "US",
 				"image": "http://images.tvrage.com/shows/49/48384.jpg",
 				"genres": [
@@ -490,7 +531,8 @@ mod.service('ShowsService', function () {
 				"genres": [
 					"Adventure",
 					"Drama",
-					"Fantasy"
+					"Fantasy",
+					"Literature"
 				],
 				"network": "HBO"
 			},
@@ -554,8 +596,7 @@ mod.service('ShowsService', function () {
 				"image": "http://images.tvrage.com/shows/4/3741.jpg",
 				"genres": [
 					"Drama",
-					"Medical",
-					"Soaps"
+					"Medical"
 				],
 				"network": "ABC"
 			},
@@ -590,8 +631,9 @@ mod.service('ShowsService', function () {
 				"name": "Hannibal",
 				"classification": "Scripted",
 				"country": "US",
-				"image": "http://images.tvrage.com/shows/31/30909.png",
+				"image": "http://images.tvrage.com/shows/31/30909.jpg",
 				"genres": [
+					"Crime",
 					"Drama",
 					"Thriller"
 				],
@@ -704,7 +746,7 @@ mod.service('ShowsService', function () {
 					"Drama",
 					"Family"
 				],
-				"network": "nickelodeon"
+				"network": "TVland"
 			},
 			{
 				"showid": 38804,
@@ -731,8 +773,7 @@ mod.service('ShowsService', function () {
 				"genres": [
 					"Comedy",
 					"Drama",
-					"Family",
-					"Soaps"
+					"Family"
 				],
 				"network": "CW"
 			},
@@ -1172,6 +1213,7 @@ mod.service('ShowsService', function () {
 					"Action",
 					"Drama",
 					"History",
+					"Literature",
 					"Military/War",
 					"Romance/Dating",
 					"Sci-Fi"
@@ -1343,7 +1385,7 @@ mod.service('ShowsService', function () {
 			{
 				"showid": 35610,
 				"link": "http://tvrage.com/scream",
-				"name": "Scream",
+				"name": "Scream: The TV Series",
 				"classification": "Scripted",
 				"country": "US",
 				"image": "http://images.tvrage.com/shows/36/35610.jpg",
@@ -1356,6 +1398,21 @@ mod.service('ShowsService', function () {
 				"network": "MTV"
 			},
 			{
+				"showid": 19354,
+				"link": "http://tvrage.com/scream-queens",
+				"name": "Scream Queens (2010)",
+				"classification": "Reality",
+				"country": "US",
+				"image": "http://images.tvrage.com/shows/20/19354.jpg",
+				"genres": [
+					"Comedy",
+					"Family",
+					"Talent",
+					"Thriller"
+				],
+				"network": "VH1"
+			},
+			{
 				"showid": 35197,
 				"link": "http://tvrage.com/sense8",
 				"name": "Sense8",
@@ -1365,6 +1422,7 @@ mod.service('ShowsService', function () {
 				"genres": [
 					"Action",
 					"Drama",
+					"Romance/Dating",
 					"Sci-Fi"
 				],
 				"network": "Netflix"
@@ -1372,7 +1430,7 @@ mod.service('ShowsService', function () {
 			{
 				"showid": 39953,
 				"link": "http://tvrage.com/sex-drugs-rock-roll",
-				"name": "Sex & Drugs & Rock & Roll",
+				"name": "Sex&Drugs&Rock&Roll",
 				"classification": "Scripted",
 				"country": "US",
 				"image": "http://images.tvrage.com/shows/40/39953.jpg",
@@ -1413,6 +1471,18 @@ mod.service('ShowsService', function () {
 				"network": "Hallmark MOVIES & MYSTERIES"
 			},
 			{
+				"showid": 48614,
+				"link": "http://tvrage.com/shows/id-48614",
+				"name": "Significant Mother",
+				"classification": "Scripted",
+				"country": "US",
+				"image": "http://images.tvrage.com/shows/49/48614.jpg",
+				"genres": [
+					"Comedy"
+				],
+				"network": "CW"
+			},
+			{
 				"showid": 33759,
 				"link": "http://tvrage.com/silicon-valley",
 				"name": "Silicon Valley",
@@ -1451,7 +1521,7 @@ mod.service('ShowsService', function () {
 				"genres": [
 					"Drama",
 					"Mystery",
-					"Politics"
+					"Sci-Fi"
 				],
 				"network": "ABC Family"
 			},
@@ -1507,7 +1577,7 @@ mod.service('ShowsService', function () {
 				"image": "http://images.tvrage.com/shows/28/27575.jpg",
 				"genres": [
 					"Drama",
-					"Fantasy",
+					"Horror/Supernatural",
 					"Teens"
 				],
 				"network": "MTV"
@@ -1565,16 +1635,17 @@ mod.service('ShowsService', function () {
 				"network": "CBS"
 			},
 			{
-				"showid": 23059,
-				"link": "http://tvrage.com/Brink",
-				"name": "Brink",
-				"classification": "Reality",
+				"showid": 37973,
+				"link": "http://tvrage.com/the-brink",
+				"name": "The Brink",
+				"classification": "Scripted",
 				"country": "US",
-				"image": "http://images.tvrage.com/shows/24/23059.jpg",
+				"image": "http://images.tvrage.com/shows/38/37973.jpg",
 				"genres": [
-					"Educational"
+					"Comedy",
+					"Military/War"
 				],
-				"network": "Science"
+				"network": "HBO"
 			},
 			{
 				"showid": 32630,
@@ -1871,7 +1942,7 @@ mod.service('ShowsService', function () {
 			{
 				"showid": 37012,
 				"link": "http://tvrage.com/unreal",
-				"name": "Un-Real",
+				"name": "UnREAL",
 				"classification": "Scripted",
 				"country": "US",
 				"image": "http://images.tvrage.com/shows/38/37012.jpg",
@@ -1934,7 +2005,7 @@ mod.service('ShowsService', function () {
 				"genres": [
 					"Drama",
 					"Mystery",
-					"Thriller"
+					"Sci-Fi"
 				],
 				"network": "FOX"
 			},
@@ -1989,9 +2060,7 @@ mod.service('ShowsService', function () {
 				"country": "US",
 				"image": "http://images.tvrage.com/shows/38/37246.jpg",
 				"genres": [
-					"Action",
-					"Comedy",
-					"Family"
+					"Comedy"
 				],
 				"network": "TVland"
 			},
@@ -2016,7 +2085,9 @@ mod.service('ShowsService', function () {
 				"country": "US",
 				"image": "http://images.tvrage.com/shows/39/38262.jpg",
 				"genres": [
-					"Drama"
+					"Drama",
+					"Sci-Fi",
+					"Thriller"
 				],
 				"network": "CBS"
 			}
