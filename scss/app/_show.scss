@@ -1,0 +1,97 @@
+.show {
+  background-color: $stable;
+  .loading {
+    text-align: center;
+    padding: 20px 0;
+  }
+}
+
+.discussion {
+  list-style: none;
+  background: $stable;
+  margin: 0;
+  padding: 0 0 50px 0; // finality
+  li {
+    padding: 0.5rem;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .avatar {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 40px;
+    -ms-flex: 0 0 40px;
+    flex: 0 0 40px;
+    //    width: 40px; // stronger than %
+    // could set height, but gonna bottom-align instead
+    position: relative; // for triangle
+    img {
+      display: block; // triangle position
+      width: 100%;
+    }
+  }
+}
+
+.other {
+  .avatar {
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 0;
+      height: 0;
+      border: 5px solid white;
+      border-left-color: transparent;
+      border-bottom-color: transparent;
+    }
+  }
+}
+
+.self {
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  -webkit-box-align: end;
+  -webkit-align-items: flex-end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+  .messages {
+    order: 1;
+    border-bottom-right-radius: 0; // weird shadow fix
+  }
+  .avatar {
+    order: 2;
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border: 5px solid white;
+      border-right-color: transparent;
+      border-top-color: transparent;
+      //      box-shadow: 1px 1px 2px rgba(black, 0.2); // not quite perfect but close
+    }
+  }
+}
+
+.messages {
+  background: white;
+  padding: 10px;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(black, 0.2);
+  p {
+    font-size: 0.8rem;
+    margin: 0 0 0.2rem 0;
+  }
+  time {
+    font-size: 0.7rem;
+    color: #ccc;
+  }
+}
+

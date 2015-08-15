@@ -1,0 +1,63 @@
+<ion-side-menus enable-menu-with-back-views="false" >
+	<ion-side-menu-content >
+		<ion-nav-bar class="bar-assertive" >
+			<ion-nav-back-button >
+			</ion-nav-back-button >
+
+			<ion-nav-buttons side="left" >
+				<button class="button button-icon button-clear ion-navicon"
+				        menu-toggle="left" >
+				</button >
+			</ion-nav-buttons >
+		</ion-nav-bar >
+		<ion-nav-view name="menuContent" ></ion-nav-view >
+	</ion-side-menu-content >
+
+	<ion-side-menu side="left" >
+		<ion-header-bar class="bar-light" >
+			<h1 class="title" >
+				<i class="ion-heart assertive" ></i >
+				TV Chat
+			</h1 >
+		</ion-header-bar >
+		<ion-content >
+			<ion-list >
+				<ion-item nav-clear
+				          menu-close
+				          ui-sref-active='active'
+				          ui-sref="app.search" >
+					<i class="ion-search" ></i >
+					&nbsp;Find Shows
+				</ion-item >
+				<ion-item nav-clear
+				          menu-close
+				          ng-click="logout()" >
+					<i class="ion-android-exit" ></i >
+					&nbsp;Logout
+				</ion-item >
+
+				<!--
+				<div class="item item-divider text-center" >
+					Your Favorite Shows
+				</div >
+
+				<ion-item ng-repeat="show in favs = (user.current.favorites | sortByName)"
+				          nav-clear
+				          menu-close
+				          ui-sref-active='active'
+				          ui-sref="app.show({showId: show.showid})" >
+					{{ show.name }}
+				</ion-item >
+				<div class="item  text-center"
+				     ng-hide="favs.length" >
+					<p >
+						0 shows found
+					</p >
+				</div >
+
+				-->
+
+			</ion-list >
+		</ion-content >
+	</ion-side-menu >
+</ion-side-menus >

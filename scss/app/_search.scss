@@ -1,0 +1,27 @@
+.search {
+  .list {
+    .item {
+      .image {
+        background-size: cover;
+        display: inline-block;
+        background-position: center;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        max-width: 80px;
+        max-height: 80px;
+        width: 100%;
+        height: 100%;
+      }
+      .genres {
+        text-transform: uppercase;
+        font-size: 70%;
+
+      }
+      .source {
+        font-size: 70%;
+        color: lighten($dark, 10%);
+      }
+    }
+  }
+}

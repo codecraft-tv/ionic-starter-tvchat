@@ -1,0 +1,49 @@
+<ion-view title="Find Shows"
+          class="search" >
+	<ion-content >
+		<div class="bar bar-header item-input-inset" >
+			<label class="item-input-wrapper" >
+				<i class="icon ion-ios-search placeholder-icon" ></i >
+				<input type="search"
+				       ng-model="search.name"
+				       placeholder="Search" >
+			</label >
+		</div >
+
+		<ion-list can-swipe="true" >
+			<ion-item ng-repeat="show in filteredShows = (showService.shows | filter:search )"
+			          ui-sref="app.show({'showId':show.showid})"
+			          class="item-thumbnail-left" >
+				<div class="image"
+				     ng-style="{backgroundImage:'url(' + show.image +')'}" >
+				</div >
+				<h2 >{{show.name}}
+
+				</h2 >
+
+				<p class="genres" >
+					<i class="ion-ios-pricetag-outline" ></i >
+					<span ng-repeat="genre in show.genres" >{{genre}}<span ng-if="!$last" >, </span ></span >
+				</p >
+
+				<p class="source" >
+					<i class="ion-ios-location-outline" ></i >
+					&nbsp;{{show.country}} | {{show.network}}
+				</p >
+
+				<span ng-show="user.current.favorites[show.showid]" >
+					<i class="ion-heart assertive" ></i >
+				</span >
+
+			</ion-item >
+
+			<div ng-show="filteredShows.length == 0" >
+				<p class="text-center" >No results found for search '{{search.name}}'</p >
+			</div >
+
+
+		</ion-list >
+
+
+	</ion-content >
+</ion-view >

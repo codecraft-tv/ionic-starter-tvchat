@@ -1,0 +1,63 @@
+<ion-view title="<div><i class='icon ion-chatbubble user-messages-top-icon'></i> {{show.name}}</div>"
+          class="show" >
+
+	<ion-nav-buttons side="secondary" >
+		<button class="button button-clear"
+		        ng-click="user.toggleFavorite(show)" >
+			<i class="ion-heart"
+			   ng-class="{'assertive':user.current.favorites[show.showid]}" ></i >
+		</button >
+	</ion-nav-buttons >
+
+	<ion-content delegate-handle="show-page" >
+
+		<!-- Loading Indicator -->
+		<div class="loading"
+		     ng-if="data.loading" >
+			<ion-spinner icon="ripple" ></ion-spinner >
+			<p >Loading messages...</p >
+		</div >
+
+		<!-- Empty room message -->
+		<div class="loading"
+		     ng-show="!data.loading && data.messages.length == 0" >
+			<p >This room is empty, be the first to post!</p >
+		</div >
+
+		<!-- Discussion list -->
+		<ol class="discussion" >
+			<li class=""
+			    ng-class="{'other':message.userId != user.current.userId, 'self':!(message.userId != user.current.userId)}"
+			    ng-repeat="message in data.messages" >
+				<div class="avatar"
+				     ng-if="message.userId != user.current.userId" >
+					<img ng-src="{{message.profilePic}}" />
+				</div >
+				<div class="messages" >
+					<p >{{message.text}}</p >
+					<time >{{message.username}} • <span am-time-ago="message.timestamp" ></span ></time >
+				</div >
+				<div class="avatar"
+				     ng-if="!(message.userId != user.current.userId)" >
+					<img ng-src="{{message.profilePic}}" />
+				</div >
+			</li >
+		</ol >
+
+	</ion-content >
+
+	<ion-footer-bar keyboard-attach
+	                class="bar-assertive item-input-inset" >
+		<label class="item-input-wrapper" >
+			<input type="text"
+			       placeholder="Type your message"
+			       ng-enter="sendMessage()"
+			       ng-model="data.message" />
+		</label >
+		<button class="button button-clear"
+		        ng-click="sendMessage()" >
+			Send
+		</button >
+	</ion-footer-bar >
+
+</ion-view >
