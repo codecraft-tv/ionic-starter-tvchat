@@ -1,4 +1,4 @@
-<ion-side-menus enable-menu-with-back-views="false" >
+<ion-side-menus >
 
 	<!-- ion-side-menu-content
 	This is where the main content of the application is inserted
@@ -30,15 +30,13 @@
 		</ion-header-bar >
 		<ion-content >
 			<ion-list >
-				<ion-item nav-clear
-				          menu-close
+				<ion-item menu-close
 				          ui-sref-active='active'
 				          ui-sref="app.search" >
 					<i class="ion-search" ></i >
 					&nbsp;Find Shows
 				</ion-item >
-				<ion-item nav-clear
-				          menu-close
+				<ion-item menu-close
 				          ng-click="logout()" >
 					<i class="ion-android-exit" ></i >
 					&nbsp;Logout
@@ -50,7 +48,6 @@
 				</div >
 
 				<ion-item ng-repeat="show in favs = (user.current.favorites | sortByName)"
-				          nav-clear
 				          menu-close
 				          ui-sref-active='active'
 				          ui-sref="app.show({showId: show.showid})" >
