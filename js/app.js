@@ -10,8 +10,8 @@ var app = angular.module('tvchat', [
 ]);
 
 
-app.constant("FIREBASE_URL", 'https://tvchat-dev.firebaseio.com/');
-app.constant("FACEBOOK_APP_ID", '630378367096526');
+app.constant("FIREBASE_URL", '<REPLACE-ME>');
+app.constant("FACEBOOK_APP_ID", '<REPLACE-ME>');
 
 
 app.run(function ($rootScope, $ionicPlatform, $cordovaStatusbar) {
