@@ -1,6 +1,8 @@
 <ion-view title="Find Shows"
           class="search" >
 	<ion-content >
+
+		<!-- Search Input Control -->
 		<div class="bar bar-header item-input-inset" >
 			<label class="item-input-wrapper" >
 				<i class="icon ion-ios-search placeholder-icon" ></i >
@@ -10,16 +12,15 @@
 			</label >
 		</div >
 
-		<ion-list can-swipe="true" >
+		<!-- Show List -->
+		<ion-list >
 			<ion-item ng-repeat="show in filteredShows = (showService.shows | filter:search )"
 			          ui-sref="app.show({'showId':show.showid})"
 			          class="item-thumbnail-left" >
 				<div class="image"
 				     ng-style="{backgroundImage:'url(' + show.image +')'}" >
 				</div >
-				<h2 >{{show.name}}
-
-				</h2 >
+				<h2 >{{show.name}}</h2 >
 
 				<p class="genres" >
 					<i class="ion-ios-pricetag-outline" ></i >
@@ -37,6 +38,7 @@
 
 			</ion-item >
 
+			<!-- No Results Found Message -->
 			<div ng-show="filteredShows.length == 0" >
 				<p class="text-center" >No results found for search '{{search.name}}'</p >
 			</div >
