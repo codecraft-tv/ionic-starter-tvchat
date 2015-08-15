@@ -7,12 +7,24 @@ mod.service('UserService', function (FIREBASE_URL, $q, $rootScope, $localstorage
 	var usersRef = new Firebase(FIREBASE_URL + "users");
 
 	var self = {
+		/* This contains the currently logged in user */
 		current: {},
+
+		/*
+		 Makes sure the favorites property is preset on the current user.
+
+		 firebase REMOVES any empty properties on a save. So we can't
+		 bootstrap the user object with favorites: {}.
+		 */
 		ensureFavorite: function () {
 			if (!self.current.favorites) {
 				self.current.favorites = {};
 			}
 		},
+
+		/*
+		 If adds or removes a show from the users favorites list
+		 */
 		toggleFavorite: function (show) {
 			// Toggles the favorite setting for a show for the current user.
 			self.ensureFavorite();
@@ -23,42 +35,59 @@ mod.service('UserService', function (FIREBASE_URL, $q, $rootScope, $localstorage
 			}
 			self.current.$save();
 		},
+		/*
+		 Adds a show to the users favorites shows list
+		 */
 		addFavorite: function (show) {
 			// Toggles the favorite setting for a show for the current user.
 			self.ensureFavorite();
 			self.current.favorites[show.showid] = show;
 			self.current.$save();
 		},
+		/*
+		 Removes a show from the users favorites shows list
+		 */
 		removeFavorite: function (show) {
 			self.ensureFavorite();
 			self.current.favorites[show.showid] = null;
 			self.current.$save();
 		},
+		/*
+		 Checks to see if a user has already logged in in a previous session
+		 by checking localstorage, if so then loads that user up from firebase.
+		 */
 		loadUser: function () {
 			var d = $q.defer();
 			var currentUserId = $localstorage.get('tvchat-user');
 			if (currentUserId) {
-				console.debug("User logged in");
+				console.debug("Found previously logged in user, loading from firebase");
 				var user = $firebaseObject(usersRef.child(currentUserId));
 				user.$loaded(function () {
 					self.current = user;
-					d.resolve();
+					d.resolve(self.current);
 				});
 			} else {
 				d.resolve();
 			}
 			return d.promise;
 		},
+		/*
+		 Logout the user
+		 */
 		logoutUser: function () {
 			$localstorage.set('tvchat-user', null);
 			self.current = {};
 		},
+		/*
+		 Login the user
+		 */
 		loginUser: function () {
 			var d = $q.defer();
 
 			//
 			// Initiate the facebook login process
 			//
+			console.log('Calling facebook login');
 			openFB.login(
 				function (response) {
 					console.log(response);
@@ -73,14 +102,16 @@ mod.service('UserService', function (FIREBASE_URL, $q, $rootScope, $localstorage
 							path: '/me',
 							params: {},
 							success: function (userData) {
+								console.log('Got data from facebook about current user');
 								console.log(userData);
 								//
 								// We got details of the current user now authenticate via firebase
 								//
+								console.log('Authenticating with firebase');
 								var auth = $firebaseAuth(ref);
 								auth.$authWithOAuthToken("facebook", token)
 									.then(function (authData) {
-										console.log("Logged in as:", authData.uid);
+										console.log("Authentication success, logged in as:", authData.uid);
 										//
 										// We've authenticated, now it's time to either get an existing user
 										// object or create a new one.
