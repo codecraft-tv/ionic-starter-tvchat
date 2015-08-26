@@ -1,75 +1,83 @@
-var app = angular.module('tvchat.services.userService', []);
+var mod = angular.module('tvchat.services.userService', []);
 
 
-app.service('UserService', function (FIREBASE_URL,
-                                     $q,
-                                     $rootScope,
-                                     $localstorage,
-                                     $ionicPopup) {
+mod.service('UserService', function (FIREBASE_URL, $q, $rootScope, $localstorage, $ionicPopup, $firebaseAuth, $firebaseObject) {
+
+
+	var ref = new Firebase(FIREBASE_URL);
+	var usersRef = new Firebase(FIREBASE_URL + "/users");
 
 	var self = {
-		/* This contains the currently logged in user */
+		/*****************************************************
+		 *  This contains the currently logged in user
+		 *****************************************************/
 		current: {},
 
-		/*
-		 Makes sure the favorites property is preset on the current user.
+		/*****************************************************
+		 *  Adds or removes a show from the users favorites list
+		 *****************************************************/
+		toggleFavorite: function (show) {
 
-		 firebase REMOVES any empty properties on a save. So we can't
-		 bootstrap the user object with favorites: {}.
-		 */
-		ensureFavorite: function () {
 			if (!self.current.favorites) {
+				 //
+				 // Makes sure the favorites property is preset on the current user.
+				 // firebase REMOVES any empty properties on a save. So we can't
+				 // bootstrap the user object with favorites: {}.
+				 //
 				self.current.favorites = {};
 			}
-		},
-
-		/*
-		 If adds or removes a show from the users favorites list
-		 */
-		toggleFavorite: function (show) {
-			// Toggles the favorite setting for a show for the current user.
-			self.ensureFavorite();
 			if (self.current.favorites[show.showid]) {
-				self.removeFavorite(show)
+				//
+		    // Removes a show from the users favorites shows list
+				//
+				self.current.favorites[show.showid] = null;
 			} else {
-				self.addFavorite(show)
+				//
+		    // Adds a show to the users favorites shows list
+				//
+				self.current.favorites[show.showid] = show;
 			}
 			self.current.$save();
 		},
-		/*
-		 Adds a show to the users favorites shows list
-		 */
-		addFavorite: function (show) {
-			self.ensureFavorite();
-			self.current.favorites[show.showid] = show;
-		},
-		/*
-		 Removes a show from the users favorites shows list
-		 */
-		removeFavorite: function (show) {
-			self.ensureFavorite();
-			self.current.favorites[show.showid] = null;
-		},
-		/*
-		 Checks to see if a user has already logged in in a previous session
-		 by checking localstorage, if so then loads that user up from firebase.
-		 */
+
+		/*****************************************************
+		 * Checks to see if a user has already logged in in a previous session
+		 * by checking localstorage, if so then loads that user up from firebase.
+		 *****************************************************/
 		loadUser: function () {
 			var d = $q.defer();
 
-			//TODO
-
+			// Check local storage to see if there is a user already logged in
+			var currentUserId = $localstorage.get('tvchat-user');
+			if (currentUserId) {
+				// If there is a logged in user then load up the object via firebase
+				// and use $firebaseObject to keep it in sync between our
+				// application and firebase.
+				console.debug("Found previously logged in user, loading from firebase");
+				var user = $firebaseObject(usersRef.child(currentUserId));
+				user.$loaded(function () {
+					// When we are sure the object has been completely
+					// loaded from firebase then resolve the promise.
+					self.current = user;
+					d.resolve(self.current);
+				});
+			} else {
+				d.resolve();
+			}
 			return d.promise;
 		},
-		/*
-		 Logout the user
-		 */
+
+		/*****************************************************
+		 * Logout the user
+		 *****************************************************/
 		logoutUser: function () {
-			//TODO
+			$localstorage.set('tvchat-user', null);
+			self.current = {};
 		},
-		/*
-		 Login the user
-		 */
+
+		/*****************************************************
+		 * Login the user
+		 *****************************************************/
 		loginUser: function () {
 			var d = $q.defer();
 
@@ -82,11 +90,12 @@ app.service('UserService', function (FIREBASE_URL,
 					console.log(response);
 					if (response.status === 'connected') {
 						console.log('Facebook login succeeded');
+						var token = response.authResponse.accessToken;
+						console.log('Token: ', token);
 						//
 						// Facebook login was a success, get details about the current
 						// user
 						//
-						var token = response.authResponse.accessToken;
 						openFB.api({
 							path: '/me',
 							params: {},
@@ -96,10 +105,64 @@ app.service('UserService', function (FIREBASE_URL,
 								//
 								// We got details of the current user now authenticate via firebase
 								//
+
 								console.log('Authenticating with firebase');
 
-								//TODO
-
+								var auth = $firebaseAuth(ref);
+								auth.$authWithOAuthToken("facebook", token)
+									.then(function (authData) {
+										console.log("Authentication success, logged in as:", authData.uid);
+										console.log(authData);
+										//
+										// We've authenticated, now it's time to either get an existing user
+										// object or create a new one.
+										//
+										usersRef.child(authData.uid)
+											.transaction(function (currentUserData) {
+												if (currentUserData === null) {
+													//
+													// If the transaction is a success and the current user data is
+													// null then this is the first time firebase has seen this user id
+													// so this user is NEW.
+													//
+													// Any object we return from here will be used as the user data
+													// in firebase
+													//
+													return {
+														'name': userData.name,
+														'profilePic': 'http://graph.facebook.com/' + userData.id + '/picture',
+														'userId': userData.id
+													};
+												}
+											},
+											function (error, committed) {
+												//
+												// This second function in the transaction clause is always called
+												// whether the user was created or is being retrieved.
+												//
+												// We want to store the userid in localstorage as well as load the user
+												// and store it in the self.current property.
+												//
+												$localstorage.set('tvchat-user', authData.uid);
+												self.current = $firebaseObject(usersRef.child(authData.uid));
+												self.current.$loaded(function () {
+													// When we are sure the object has been completely
+													// loaded from firebase then resolve the promise.
+													d.resolve(self.current);
+												});
+											});
+									})
+									.catch(function (error) {
+										console.error("Authentication failed:", error);
+										//
+										// We've failed to authenticate, show the user an error message.
+										//
+										$ionicPopup.alert({
+											title: "Error",
+											template: 'There was an error logging you in with facebook, please try later.'
+										});
+										d.reject(error);
+									});
 							},
 							error: function (error) {
 								console.error('Facebook error: ' + error.error_description);
@@ -114,6 +177,7 @@ app.service('UserService', function (FIREBASE_URL,
 								d.reject(error);
 							}
 						});
+
 					} else {
 						console.error('Facebook login failed');
 						//
@@ -124,11 +188,11 @@ app.service('UserService', function (FIREBASE_URL,
 							title: "Facebook Error",
 							template: 'Failed to login with facebook'
 						});
-						d.reject(error);
+						d.reject();
 					}
 				},
 				{
-					scope: 'email' // Comma separated list of permissions to request from facebook
+					scope: 'email'
 				});
 			return d.promise;
 		}
