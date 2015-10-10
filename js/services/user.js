@@ -98,7 +98,63 @@ app.service('UserService', function (FIREBASE_URL,
 								//
 								console.log('Authenticating with firebase');
 
-								//TODO
+								/* UNCOMMENT WHEN GOING THROUGH LECTURES
+								var auth = $firebaseAuth(ref);
+								auth.$authWithOAuthToken("facebook", token)
+									.then(function (authData) {
+										console.log("Authentication success, logged in as:", authData.uid);
+										console.log(authData);
+										//
+										// We've authenticated, now it's time to either get an existing user
+										// object or create a new one.
+										//
+										usersRef.child(authData.uid)
+											.transaction(function (currentUserData) {
+												if (currentUserData === null) {
+													//
+													// If the transaction is a success and the current user data is
+													// null then this is the first time firebase has seen this user id
+													// so this user is NEW.
+													//
+													// Any object we return from here will be used as the user data
+													// in firebase
+													//
+													return {
+														'name': userData.name,
+														'profilePic': 'http://graph.facebook.com/' + userData.id + '/picture',
+														'userId': userData.id
+													};
+												}
+											},
+											function (error, committed) {
+												//
+												// This second function in the transaction clause is always called
+												// whether the user was created or is being retrieved.
+												//
+												// We want to store the userid in localstorage as well as load the user
+												// and store it in the self.current property.
+												//
+												$localstorage.set('tvchat-user', authData.uid);
+												self.current = $firebaseObject(usersRef.child(authData.uid));
+												self.current.$loaded(function () {
+													// When we are sure the object has been completely
+													// loaded from firebase then resolve the promise.
+													d.resolve(self.current);
+												});
+											});
+									})
+									.catch(function (error) {
+										console.error("Authentication failed:", error);
+										//
+										// We've failed to authenticate, show the user an error message.
+										//
+										$ionicPopup.alert({
+											title: "Error",
+											template: 'There was an error logging you in with facebook, please try later.'
+										});
+										d.reject(error);
+									});
+								*/
 
 							},
 							error: function (error) {
