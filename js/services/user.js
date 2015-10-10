@@ -113,6 +113,8 @@ app.service('UserService', function (FIREBASE_URL,
 								// Facebook login was a success, get details about the current
 								// user
 								//
+								// UNCOMMENT WHEN GOING THROUGH LECTURES
+								/*
 								var token = response.authResponse.accessToken;
 								openFB.api({
 									path: '/me',
@@ -125,8 +127,7 @@ app.service('UserService', function (FIREBASE_URL,
 										//
 										console.log('Authenticating with firebase');
 
-										// UNCOMMENT WHEN GOING THROUGH LECTURES
-										/*
+
 										var auth = $firebaseAuth(ref);
 										auth.$authWithOAuthToken("facebook", token)
 											.then(function (authData) {
@@ -182,8 +183,6 @@ app.service('UserService', function (FIREBASE_URL,
 												});
 												d.reject(error);
 											});
-											*/
-
 
 									},
 									error: function (error) {
@@ -199,6 +198,7 @@ app.service('UserService', function (FIREBASE_URL,
 										d.reject(error);
 									}
 								});
+								*/
 							} else {
 								console.error('Facebook login failed');
 								//
