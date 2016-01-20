@@ -7,6 +7,9 @@ app.service('UserService', function (FIREBASE_URL,
                                      $localstorage,
                                      $ionicPopup) {
 
+	var ref = new Firebase(FIREBASE_URL);
+	var usersRef = new Firebase(FIREBASE_URL + "/users");
+
 	var self = {
 		/* This contains the currently logged in user */
 		current: {},
