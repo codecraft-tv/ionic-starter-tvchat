@@ -5,7 +5,7 @@ mod.service('ShowsService', function () {
 
 	var self = {
 		getShow: function (showId) {
-			return _.findWhere(self.shows, {"showid": showId});
+			return _.find(self.shows, {"showid": showId});
 		},
 		shows: [
 			{
