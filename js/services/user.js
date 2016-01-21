@@ -74,7 +74,6 @@ app.service('UserService', function (FIREBASE_URL,
 					// When we are sure the object has been completely
 					// loaded from firebase then resolve the promise.
 					self.current = user;
-					self.identifyUser();
 					d.resolve(self.current);
 				});
 			} else {
