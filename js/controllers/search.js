@@ -8,6 +8,4 @@ mod.controller('SearchCtrl', function($scope, $state, $stateParams, $ionicListDe
 
 	$scope.showService = ShowsService;
 	$scope.user = UserService;
-
-
 });

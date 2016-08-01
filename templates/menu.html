@@ -1,4 +1,4 @@
-<ion-side-menus enable-menu-with-back-views="false" >
+<ion-side-menus  >
 	<ion-side-menu-content >
 		<ion-nav-bar class="bar-assertive" >
 			<ion-nav-back-button >
@@ -22,7 +22,7 @@
 		</ion-header-bar >
 		<ion-content >
 			<ion-list >
-				<ion-item nav-clear
+				<ion-item 
 				          menu-close
 				          ui-sref-active='active'
 				          ui-sref="app.search" >
@@ -36,13 +36,12 @@
 					&nbsp;Logout
 				</ion-item >
 
-				<!--
+				
 				<div class="item item-divider text-center" >
 					Your Favorite Shows
 				</div >
 
 				<ion-item ng-repeat="show in favs = (user.current.favorites | sortByName)"
-				          nav-clear
 				          menu-close
 				          ui-sref-active='active'
 				          ui-sref="app.show({showId: show.showid})" >
@@ -55,7 +54,7 @@
 					</p >
 				</div >
 
-				-->
+				
 
 			</ion-list >
 		</ion-content >

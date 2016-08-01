@@ -20,6 +20,18 @@
 	<script src="lib/moment/moment.js" ></script >
 	<script src="lib/angular-moment/angular-moment.min.js" ></script >
 	<script src="lib/openfb/openfb.js" ></script >
+	<script src="lib/openfb/ngopenfb.js" ></script >
+
+	<script>
+	  // Initialize Firebase
+	  var config = {
+	    apiKey: "AIzaSyCLlVDkflfbBnaLukMtPeF-Xb44jwc5LCM",
+	    authDomain: "foochat-f4779.firebaseapp.com",
+	    databaseURL: "https://foochat-f4779.firebaseio.com",
+	    storageBucket: "foochat-f4779.appspot.com",
+	  };
+	  firebase.initializeApp(config);
+	</script>
 
 	<!-- cordova script (this will be a 404 during development) -->
 	<script src="cordova.js" ></script >
@@ -40,6 +52,7 @@
 	<script src="js/services/user.js" ></script >
 	<script src="js/services/utils.js" ></script >
 	<script src="js/services.js" ></script >
+
 </head >
 <body ng-app="tvchat" >
 

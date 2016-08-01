@@ -15,7 +15,9 @@ mod.controller('ShowCtrl', function ($scope, $rootScope, $state, $stateParams, $
 		showInfo: false
 	};
 
-	var messagesRef = new Firebase(FIREBASE_URL);
+	// var messagesRef = new Firebase(FIREBASE_URL);
+	var messagesRef = firebase.database().ref();
+
 
 	$scope.loadMessages = function () {
 		console.log("Loading data for show ", $scope.show.name);
@@ -41,10 +43,14 @@ mod.controller('ShowCtrl', function ($scope, $rootScope, $state, $stateParams, $
 				roomId: $scope.roomId,
 				roomName: $scope.show.name,
 				text: $scope.data.message,
-				username: $scope.user.current.name,
-				userId: $scope.user.current.userId,
-				profilePic: $scope.user.current.profilePic,
+				username: firebase.auth().currentUser.displayName,
+				userId: firebase.auth().currentUser.uid,
+				profilePic: firebase.auth().currentUser.photoURL,
 				timestamp: d.getTime()
+			}).then(function(item) {
+				console.log("Chat message added");
+			}).catch(function(err) {
+				console.error(err);
 			});
 
 			$scope.data.message = '';

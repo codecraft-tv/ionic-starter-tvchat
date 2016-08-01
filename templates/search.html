@@ -12,11 +12,7 @@
 
 		<ion-list can-swipe="true" >
 			<ion-item ng-repeat="show in filteredShows = (showService.shows | filter:search )"
-			          ui-sref="app.show({'showId':show.showid})"
-			          class="item-thumbnail-left" >
-				<div class="image"
-				     ng-style="{backgroundImage:'url(' + show.image +')'}" >
-				</div >
+			          ui-sref="app.show({'showId':show.showid})" >
 				<h2 >{{show.name}}
 
 				</h2 >
