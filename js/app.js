@@ -1,6 +1,7 @@
 var app = angular.module('tvchat', [
 	'ionic',
 	'ngCordova',
+	'ngOpenFB',
 	'firebase',
 	'angularMoment',
 	'tvchat.controllers',

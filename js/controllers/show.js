@@ -3,6 +3,7 @@ var mod = angular.module('tvchat.controllers.show', []);
 
 
 mod.controller('ShowCtrl', function ($scope,
+                                     $firebaseArray,
                                      FIREBASE_URL,
                                      UserService) {
 
@@ -17,7 +18,7 @@ mod.controller('ShowCtrl', function ($scope,
 		showInfo: false
 	};
 
-	var messagesRef = new Firebase(FIREBASE_URL);
+	var messagesRef = firebase.database().ref();
 
 	$scope.loadMessages = function () {
 	};
