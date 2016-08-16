@@ -11,9 +11,7 @@ var app = angular.module('tvchat', [
 ]);
 
 
-app.constant("FIREBASE_URL", 'https://codecraft-tvchat-demo.firebaseio.com/');
 app.constant("FACEBOOK_APP_ID", '505082019666102');
-
 
 app.run(function ($rootScope, $ionicPlatform, $cordovaStatusbar) {
 
@@ -33,7 +31,7 @@ app.run(function ($rootScope, $ionicPlatform, $cordovaStatusbar) {
 		});
 	});
 
-app.run(function (ngFB, $state, FACEBOOK_APP_ID) {
+app.run(function (ngFB, FACEBOOK_APP_ID) {
 	ngFB.init({appId: FACEBOOK_APP_ID});
 });
 

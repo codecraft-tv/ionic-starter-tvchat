@@ -69,11 +69,13 @@ mod.service('UserService', function ($q, $rootScope, $localstorage, $ionicPopup,
 			ngFB.login({scope: 'email'}).then(
 				function (response) {
 					if (response.status === 'connected') {
+						console.log(response);
 						console.log('Facebook login succeeded');
 						var token = response.authResponse.accessToken;
 						//
 						// We are logged in so now authenticate via firebase
 						//
+
 						console.log('Authenticating with firebase');
 						var auth = $firebaseAuth();
 						var credential = firebase.auth.FacebookAuthProvider.credential(token);
@@ -84,6 +86,7 @@ mod.service('UserService', function ($q, $rootScope, $localstorage, $ionicPopup,
 	              //
                 console.log("Signed in as:", firebaseUser.uid);
                 console.log(firebaseUser);
+
 	              d.resolve();
               })
               .catch(function (error) {
@@ -95,7 +98,6 @@ mod.service('UserService', function ($q, $rootScope, $localstorage, $ionicPopup,
 								d.reject(error);
               });
 
-
 					} else {
 						//
 						// There was an error authenticating with facebook
@@ -106,7 +108,7 @@ mod.service('UserService', function ($q, $rootScope, $localstorage, $ionicPopup,
 							title: "Facebook Error",
 							template: 'Failed to login with facebook'
 						});
-						d.reject(error);
+						d.reject(response);
 					}
 				});
 
