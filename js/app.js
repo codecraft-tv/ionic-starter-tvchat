@@ -33,8 +33,8 @@ app.run(function ($rootScope, $ionicPlatform, $cordovaStatusbar) {
 		});
 	});
 
-app.config(function ($stateProvider, $urlRouterProvider, FACEBOOK_APP_ID) {
-	openFB.init({appId: FACEBOOK_APP_ID});
+app.run(function (ngFB, FACEBOOK_APP_ID) {
+	ngFB.init({appId: FACEBOOK_APP_ID});
 });
 
 app.config(function ($stateProvider, $urlRouterProvider) {
