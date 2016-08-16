@@ -11,7 +11,6 @@ var app = angular.module('tvchat', [
 ]);
 
 
-app.constant("FIREBASE_URL", '<REPLACE-ME>');
 app.constant("FACEBOOK_APP_ID", '<REPLACE-ME>');
 
 
