@@ -1,8 +1,7 @@
 var app = angular.module('tvchat.services.userService', []);
 
 
-app.service('UserService', function (FIREBASE_URL,
-                                     $firebaseAuth,
+app.service('UserService', function ($firebaseAuth,
                                      $q,
                                      $rootScope,
                                      $localstorage,

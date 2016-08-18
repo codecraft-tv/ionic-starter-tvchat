@@ -4,7 +4,6 @@ var mod = angular.module('tvchat.controllers.show', []);
 
 mod.controller('ShowCtrl', function ($scope,
                                      $firebaseArray,
-                                     FIREBASE_URL,
                                      UserService) {
 
 	$scope.user = UserService;
