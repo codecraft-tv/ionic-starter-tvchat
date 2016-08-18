@@ -2,7 +2,7 @@ var mod = angular.module('tvchat.controllers.show', []);
 
 
 
-mod.controller('ShowCtrl', function ($scope, $rootScope, $state, $stateParams, $timeout, $ionicScrollDelegate, FIREBASE_URL, $firebaseArray, UserService, ShowsService) {
+mod.controller('ShowCtrl', function ($scope, $rootScope, $state, $stateParams, $timeout, $ionicScrollDelegate, $firebaseArray, UserService, ShowsService) {
 
 	$scope.user = UserService;
 
@@ -14,8 +14,7 @@ mod.controller('ShowCtrl', function ($scope, $rootScope, $state, $stateParams, $
 		loading: true,
 		showInfo: false
 	};
-
-	// var messagesRef = new Firebase(FIREBASE_URL);
+	
 	var messagesRef = firebase.database().ref();
 
 
