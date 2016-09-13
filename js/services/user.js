@@ -1,11 +1,7 @@
 var app = angular.module('tvchat.services.userService', []);
 
 
-app.service('UserService', function ($firebaseAuth,
-                                     $q,
-                                     $rootScope,
-                                     $localstorage,
-                                     $ionicPopup) {
+app.service('UserService', function ($q, $rootScope, $localstorage, $ionicPopup, ngFB, $firebaseAuth) {
 
 	var self = {
 		/* This contains the currently logged in user */
